@@ -6,9 +6,7 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        username 
-
-        }
+        username
       }
     }
   }
@@ -26,6 +24,7 @@ export const ADD_USER = gql`
   }
 `;
 
+// ask for assistance
 export const SAVED_BOOK = gql`
 input savedBooks()
 `;
