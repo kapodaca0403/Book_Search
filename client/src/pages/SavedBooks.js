@@ -8,19 +8,19 @@ import {
 } from "react-bootstrap";
 
 import { REMOVE_BOOK } from "../utils/mutation";
-import { getMe, deleteBook } from "../utils/API";
+import { GET_ME } from "../utils/API";
 import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({});
-  const []
+  const { loading, data } = useQuery(GET_ME);
+  const [removebook] = useMutation(REMOVE_BOOK);
+
+  const userData = data?.me || [];
 
   // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
-  const { loading, data } = useQuery(GET_ME, {
-    variables: { userData },
-  });
+  // const userDataLength = Object.keys(userData).length;
+
   // useEffect(() => {
   //   const getUserData = async () => {
   //     try {
@@ -55,8 +55,8 @@ const SavedBooks = () => {
     }
 
     try {
-      // const response = await deleteBook(bookId, token);
-      const [handleDeleteBook, { error, data }] = useMutation(REMOVE_BOOK);
+      const response = await deleteBook(bookId, token);
+      const [response, { error, data }] = useMutation(REMOVE_BOOK);
 
       if (!response.ok) {
         throw new Error("something went wrong!");
@@ -72,7 +72,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (!loading) {
     return <h2>LOADING...</h2>;
   }
 

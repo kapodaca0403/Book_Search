@@ -22,9 +22,9 @@ Book Search Engine allows you to either sign up or login for users to create a l
 
 Here is the deployed link:
 
-## Tests
+## Technology
 
-undefined
+Heroku, Mutations, Mongoose, Javascript
 
 ## Usage
 
