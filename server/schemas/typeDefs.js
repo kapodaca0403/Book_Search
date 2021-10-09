@@ -24,7 +24,7 @@ const typeDefs = gql`
     savedBooks(book: saveBook): User
     removeBook(bookID: String): User
   }
-  input saveBook {
+  input SaveBook {
     bookID: String
     authors: [String]
     description: String
