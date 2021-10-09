@@ -25,10 +25,38 @@ export const ADD_USER = gql`
 `;
 // $ variable and data type after
 // ask for assistance
-export const SAVED_BOOK = gql` 
-mutation saveBook($bookToSave: saveBook!) 
-
+export const SAVED_BOOK = gql`
+  mutation saveBooks($input: saveBook) {
+    saveBooks(input: $input) {
+      _id
+      username
+      email
+      savedBooks {
+        bookId
+        authors
+        image
+        description
+        title
+        link
+      }
+    }
+  }
 `;
 
 export const REMOVE_BOOK = gql`
-mutation deleteBook($bookID: ID!)`;
+  mutation deleteBook($bookID: ID!) {
+    deleteBook(bookID: $bookId) {
+      _id
+      username
+      email
+      savedBooks {
+        bookId
+        authors
+        image
+        description
+        title
+        link
+      }
+    }
+  }
+`;
